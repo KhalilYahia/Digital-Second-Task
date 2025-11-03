@@ -471,7 +471,7 @@ class ReadFromFile
         uint smallest = 255;
         for(int i=0;i<nodesCount;++i)
         {
-            // read each node in start address to end ofnodes
+            // read each node in start address to end of nodes
             var currentNode = ReadNodeFileStruct(acc, startAddress+i*32);
             if (currentNode.ValueIndex != -1)
             {
@@ -503,7 +503,7 @@ class ReadFromFile
                 return nodefile_;
         }
 
-        // if smallest=0; if this nodefile contains the 
+        // 
         if (smallest!=0 && smallest>0 && smallest!=255)
         {
             return nodefile;

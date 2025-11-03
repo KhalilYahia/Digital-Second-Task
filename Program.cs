@@ -51,7 +51,7 @@ class BuildOfBinaryFile
   
     public void Build(string csvPath, string outPathIpv4, string outPathIpv6)
     {
-        if (!File.Exists(csvPath)) { Console.Error.WriteLine("CSV not found."); return; }
+        if (!File.Exists(csvPath)) { Console.Error.WriteLine("CSV file not found."); return; }
 
         var rootv4 = new Node();
         var rootv6 = new Node();
@@ -91,29 +91,7 @@ class BuildOfBinaryFile
         // Create Ipv6 File
         BuildIPFile(rootv6, outPathIpv6);
 
-        //using var fsv4 = File.Create(outPathv4);
-        //using var bw = new BinaryWriter(fs, Encoding.UTF8, leaveOpen: true);
-
-        //BinaryFileHeader header = new BinaryFileHeader();
-
-        //long HeaderStartPos = fs.Position;
-        //// write to header file
-        //for (int i = 0; i < 16;++i) bw.Write(new byte());
-
-        //long GeoInfoStartPos = fs.Position;        
-        // Write_GeoInfoToFile(root.Children, fs, bw);
-       
-        //long NodesStartPos = fs.Position;
-        //Write_NodesToFile(new Node[] { root }, fs, bw);
-
-        //// write information in header 
-        //fs.Position = HeaderStartPos;
-        //bw.Write(GeoInfoStartPos);
-        //bw.Write(NodesStartPos);
-
-        //// save count of level in header
-        //bw.Write(0);
-       
+             
     }
 
     private void BuildIPFile(Node root, string outPath)
@@ -185,14 +163,8 @@ class BuildOfBinaryFile
 
     void InsertPrefix(Node root, byte[] ipByte, int prefixLen, GeoInfo info,long lineNo)
     {
-        //// bytes big-endian order: b0 b1 b2 b3
-        //byte b0 = (byte)(ip >> 24);
-        //byte b1 = (byte)(ip >> 16);
-        //byte b2 = (byte)(ip >> 8);
-        //byte b3 = (byte)ip;
-
-        //Span<byte> bytes = stackalloc byte[4] { b0, b1, b2, b3 };
-        int depthBytes = (int) Math.Ceiling(((float)prefixLen)/8.0);   // /8
+       
+        int depthBytes = (int) Math.Ceiling(((float)prefixLen)/8.0);  
 
         var node = root;
         for (int i = 0; i < depthBytes; i++)
@@ -402,7 +374,7 @@ class ReadFromFile
 
         if (!File.Exists(filePath))
         {
-            Console.WriteLine($"Database file not found: {filePath}");
+            Console.WriteLine($"Error://**//**//**//** Database file not found: {filePath} **//**//**//**\n");
             return;
         }
 
